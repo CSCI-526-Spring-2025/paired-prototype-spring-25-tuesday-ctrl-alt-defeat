@@ -30,13 +30,13 @@ public class ObstacleController : MonoBehaviour
         {
             // Change the sprite color to white
             // Temporary implementation to change to white; has to be a selectable color
-            spriteRenderer.color = Color.white;
+            spriteRenderer.color = ColorData.currentColor;
         }
 
         if (backgroundSprite != null && spriteRenderer != null)
         {
             // Check if the background is also white
-            if (backgroundSprite.color == Color.white)
+            if (backgroundSprite.color == spriteRenderer.color)
             {
                 // Disable collision detection
                 if (spriteCollider != null)
