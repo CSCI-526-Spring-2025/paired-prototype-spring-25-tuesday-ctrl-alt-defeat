@@ -26,10 +26,14 @@ public class PlayerController : MonoBehaviour
     private float moveInput;
     // Flag to check if player is grounded
     private bool isGrounded;
+    // sprite renderer
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        rb.freezeRotation = true;
+        spriteRenderer = spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -50,5 +54,19 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
+    }
+
+    void OnMouseDown()
+    {
+        if (spriteRenderer != null)
+        {
+            // Change the sprite color to white
+            // Temporary implementation to change to white; has to be a selectable color
+            if ( ColorData.currentColor == Color.white || ColorData.currentColor == Color.black || spriteRenderer.color == Color.white || spriteRenderer.color == Color.black )
+                spriteRenderer.color = ColorData.currentColor;
+            else {
+                spriteRenderer.color = Color.Lerp(spriteRenderer.color, ColorData.currentColor, 0.5f);
+            }
+        }
     }
 }

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public static class ColorData
 {
-    public static Color currentColor = Color.white;
+    public static Color currentColor = Color.red;
 }

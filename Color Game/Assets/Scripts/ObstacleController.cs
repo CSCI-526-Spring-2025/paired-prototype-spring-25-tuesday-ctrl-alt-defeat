@@ -26,11 +26,16 @@ public class ObstacleController : MonoBehaviour
 
     void OnMouseDown()
     {
+
         if (spriteRenderer != null)
         {
             // Change the sprite color to white
             // Temporary implementation to change to white; has to be a selectable color
-            spriteRenderer.color = ColorData.currentColor;
+            if ( ColorData.currentColor == Color.white || ColorData.currentColor == Color.black || spriteRenderer.color == Color.white || spriteRenderer.color == Color.black )
+                spriteRenderer.color = ColorData.currentColor;
+            else {
+                spriteRenderer.color = Color.Lerp(spriteRenderer.color, ColorData.currentColor, 0.5f);
+            }
         }
 
         if (backgroundSprite != null && spriteRenderer != null)
