@@ -28,12 +28,16 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     // sprite renderer
     private SpriteRenderer spriteRenderer;
+    // default color - gray
+    private Color defaultColor = Color.gray;
+    private float resetTime = 3f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
         spriteRenderer = spriteRenderer = GetComponent<SpriteRenderer>();
+        
     }
 
     void Update()
@@ -53,6 +57,7 @@ public class PlayerController : MonoBehaviour
         // Moves player
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
 
+        // check if player is grounded
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
     }
 
@@ -60,13 +65,24 @@ public class PlayerController : MonoBehaviour
     {
         if (spriteRenderer != null)
         {
-            // Change the sprite color to white
-            // Temporary implementation to change to white; has to be a selectable color
-            if ( ColorData.currentColor == Color.white || ColorData.currentColor == Color.black || spriteRenderer.color == Color.white || spriteRenderer.color == Color.black )
+            // logic to paint the player
+            if ( ColorData.currentColor == Color.white || ColorData.currentColor == Color.black || spriteRenderer.color == Color.gray || spriteRenderer.color == Color.white || spriteRenderer.color == Color.black )
                 spriteRenderer.color = ColorData.currentColor;
             else {
                 spriteRenderer.color = Color.Lerp(spriteRenderer.color, ColorData.currentColor, 0.5f);
             }
+
+           Invoke("ResetColor", resetTime);
         }
     }
+
+    // resets color
+    void ResetColor()
+    {
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = defaultColor;
+        }
+    }
+
 }

@@ -24,6 +24,7 @@ public class ObstacleController : MonoBehaviour
         spriteCollider = GetComponent<Collider2D>();
     }
 
+    // paints obstacles
     void OnMouseDown()
     {
 

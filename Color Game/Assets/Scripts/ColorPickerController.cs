@@ -15,7 +15,7 @@ public class ColorPickerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
+    // Picks the color from the color picker
     void OnMouseDown()
     {
         if(spriteRenderer != null)
