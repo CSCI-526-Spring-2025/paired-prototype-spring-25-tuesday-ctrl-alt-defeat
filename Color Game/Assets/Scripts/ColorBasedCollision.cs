@@ -28,7 +28,6 @@ public class ColorBasedCollision : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         ColorBasedCollision other = collision.gameObject.GetComponent<ColorBasedCollision>();
-        Debug.Log("Collision detected with " + collision.gameObject.name);
 
         if (other != null && spriteRenderer != null && other.spriteRenderer != null)
         {
@@ -36,13 +35,11 @@ public class ColorBasedCollision : MonoBehaviour
             {
                 // Disable collision
                 Physics2D.IgnoreCollision(objCollider, other.GetComponent<Collider2D>(), true);
-                Debug.Log("Collision ignored due to matching colors.");
             }
             else
             {
                 // Enable collision
                 Physics2D.IgnoreCollision(objCollider, other.GetComponent<Collider2D>(), false);
-                Debug.Log("Collision allowed due to different colors.");
             }
         }
     }
@@ -57,6 +54,5 @@ public class ColorBasedCollision : MonoBehaviour
                 Physics2D.IgnoreCollision(objCollider, col, false);
             }
         }
-        Debug.Log("Collisions re-enabled after color change.");
     }
 }
