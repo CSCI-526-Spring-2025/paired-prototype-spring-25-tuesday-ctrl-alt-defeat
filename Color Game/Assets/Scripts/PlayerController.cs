@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
         spriteRenderer = spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.color = defaultColor;
         
     }
 
