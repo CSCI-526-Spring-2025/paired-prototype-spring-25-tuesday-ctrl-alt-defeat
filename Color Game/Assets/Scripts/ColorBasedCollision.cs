@@ -21,6 +21,7 @@ public class ColorBasedCollision : MonoBehaviour
 
     void Update()
     {
+        //Debug.Log("My object color: " + spriteRenderer.color);
         if (spriteRenderer.color != lastColor)
         {
             // Color changed, re-enable collisions with all objects
@@ -61,8 +62,10 @@ public class ColorBasedCollision : MonoBehaviour
     void ColorCollider(Collider2D otherCollider)
     {
         ColorBasedCollision other = otherCollider.GetComponent<ColorBasedCollision>();
-        
-        if (other != null && spriteRenderer.color == other.spriteRenderer.color)
+        Debug.Log("Color1: " + spriteRenderer.color);
+        Debug.Log("Color2: " + other.spriteRenderer.color);
+
+        if (other != null && AreColorsClose(spriteRenderer.color, other.spriteRenderer.color, 0.03f))
         {
             // Disable collision
             Physics2D.IgnoreCollision(objCollider, otherCollider, true);
@@ -73,5 +76,13 @@ public class ColorBasedCollision : MonoBehaviour
             // Enable collision
             Physics2D.IgnoreCollision(objCollider, otherCollider, false);
         }
+    }
+
+    bool AreColorsClose(Color color1, Color color2, float tolerance)
+    {
+        return Mathf.Abs(color1.r - color2.r) < tolerance &&
+           Mathf.Abs(color1.g - color2.g) < tolerance &&
+           Mathf.Abs(color1.b - color2.b) < tolerance &&
+           Mathf.Abs(color1.a - color2.a) < tolerance; 
     }
 }

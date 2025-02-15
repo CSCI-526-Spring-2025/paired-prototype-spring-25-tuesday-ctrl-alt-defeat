@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     // default color - gray
     private Color defaultColor = Color.gray;
-    private float resetTime = 3f;
+    // private float resetTime = 3f;
 
     void Start()
     {
@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        //Debug.Log("Player Color: " + spriteRenderer.color);
         // Gets movement input
         moveInput = Input.GetAxis("Horizontal"); // Get input (-1, 0, 1)
 
@@ -50,6 +51,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ResetColor();
         }
     }
 
@@ -73,7 +79,7 @@ public class PlayerController : MonoBehaviour
                 spriteRenderer.color = Color.Lerp(spriteRenderer.color, ColorData.currentColor, 0.5f);
             }
 
-           Invoke("ResetColor", resetTime);
+           //Invoke("ResetColor", resetTime);
         }
     }
 
