@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Spike
   - WinZone
+  - colorCircle
+  - ColorCircle
   layers:
   - Default
   - TransparentFX
