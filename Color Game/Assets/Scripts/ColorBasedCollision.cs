@@ -28,15 +28,7 @@ public class ColorBasedCollision : MonoBehaviour
             ReenableCollisions();
             lastColor = spriteRenderer.color;
 
-            // detect any contact with obstacles where collisions need to be modified; eg - ground
-            Collider2D[] allColliders = FindObjectsOfType<Collider2D>();
-            foreach (Collider2D col in allColliders)
-            {
-                if (col != objCollider)
-                {
-                    ColorCollider(col);
-                }
-            }
+            transform.position += Vector3.up * 0.01f;
         }
     }
 
