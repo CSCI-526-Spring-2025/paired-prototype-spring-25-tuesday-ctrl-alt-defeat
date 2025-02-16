@@ -65,7 +65,13 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
 
         // check if player is grounded
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
+        // isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
+
+        // Check if player is grounded and if the ground collider is enabled
+        
+        Physics2D.SyncTransforms();
+        Collider2D groundCollider = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
+        isGrounded =  groundCollider != null && groundCollider.enabled && !Physics2D.GetIgnoreCollision(GetComponent<Collider2D>(), groundCollider);
     }
 
     void OnMouseDown()
