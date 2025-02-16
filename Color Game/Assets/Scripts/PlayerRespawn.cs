@@ -29,9 +29,17 @@ public class PlayerRespawn : MonoBehaviour
         if (transform.position.y < -17f) { 
             Respawn();
         }
+
     }
 
-    
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Spike"))
+        {
+            Respawn();
+        }
+    }
+
     bool IsColorWhite(Color color)
     {
         return color.r > 0.95f && color.g > 0.95f && color.b > 0.95f;
