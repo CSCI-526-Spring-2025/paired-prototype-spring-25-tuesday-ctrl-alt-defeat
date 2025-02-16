@@ -76,7 +76,17 @@ public class PlayerController : MonoBehaviour
             if ( ColorData.currentColor == Color.white || ColorData.currentColor == Color.black || spriteRenderer.color == Color.gray || spriteRenderer.color == Color.white || spriteRenderer.color == Color.black )
                 spriteRenderer.color = ColorData.currentColor;
             else {
-                spriteRenderer.color = Color.Lerp(spriteRenderer.color, ColorData.currentColor, 0.5f);
+                // spriteRenderer.color = Color.Lerp(spriteRenderer.color, ColorData.currentColor, 0.5f);
+                // Additive blending instead of Lerp
+                    Color newColor = spriteRenderer.color + ColorData.currentColor;
+
+                    // Clamp color values to prevent overexposure
+                    newColor.r = Mathf.Min(newColor.r, 1f);
+                    newColor.g = Mathf.Min(newColor.g, 1f);
+                    newColor.b = Mathf.Min(newColor.b, 1f);
+                    newColor.a = Mathf.Min(newColor.a, 1f);
+
+                    spriteRenderer.color = newColor;
             }
 
            //Invoke("ResetColor", resetTime);
