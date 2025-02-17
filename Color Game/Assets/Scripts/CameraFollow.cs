@@ -9,7 +9,7 @@ public class CameraFollow : MonoBehaviour
     
     void Start()
     {
-        
+        Camera.main.aspect = (float)Screen.width / Screen.height;
     }
 
     // Update is called once per frame
@@ -19,6 +19,7 @@ public class CameraFollow : MonoBehaviour
         {
 
             transform.position = target.position + offset;
+            Camera.main.aspect = (float)Screen.width / Screen.height;
         }
 }
 }
