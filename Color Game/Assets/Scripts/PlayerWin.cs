@@ -26,8 +26,11 @@ public class PlayerWin : MonoBehaviour
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
         
         // Update the UI message with the static variable
-        winMessageText.text = "You Win! You have collected : " + CollectibleData.currCollectibles + " / " + CollectibleData.totalCollectibles + " collectibles!!";
+        winMessageText.text = "<b>You Win! You have collected : \n" + CollectibleData.currCollectibles + " / " + CollectibleData.totalCollectibles + " collectibles!!</b>";
         winMessageText.color = Color.green;
+
+        RectTransform textTransform = winMessageText.GetComponent<RectTransform>();
+        textTransform.anchoredPosition += new Vector2(300, -100);  
 
         winMessageText.gameObject.SetActive(true); // Show UI Message
     }
