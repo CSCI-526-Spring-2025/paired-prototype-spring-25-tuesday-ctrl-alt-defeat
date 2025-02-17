@@ -47,6 +47,7 @@ public class PlayerRespawn : MonoBehaviour
 
     void Respawn()
     {
+        PlayerLife.lives -= 1;
         transform.position = startPosition;
         spriteRenderer.color = Color.gray;
     }
