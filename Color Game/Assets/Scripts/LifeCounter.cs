@@ -9,7 +9,7 @@ public class LifeCounter : MonoBehaviour
     public TMP_Text loseMessageText;
     public GameObject playerObj;
 
-    private bool gameLost = false;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -19,14 +19,14 @@ public class LifeCounter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!gameLost) UpdatePlayerLives();
+        if(!PlayerLife.gameLost) UpdatePlayerLives();
     }
 
     void UpdatePlayerLives()
     {
         if(PlayerLife.lives == 0)
         {   
-            gameLost = true;
+            PlayerLife.gameLost = true;
             LoseGame();
         }
         livesText.text = "<b>LIVES: " + PlayerLife.lives + "</b>";
