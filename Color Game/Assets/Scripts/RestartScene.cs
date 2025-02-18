@@ -23,7 +23,7 @@ public class RestartScene : MonoBehaviour
     // Restart scene
     public void RestartGame()
     {
-        PlayerLife.lives -= 1;
+        if(!PlayerLife.gameLost) PlayerLife.lives -= 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
